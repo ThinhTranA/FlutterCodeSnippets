@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 import 'package:news_reader/Model/model.dart';
+import 'package:news_reader/article_screen.dart';
 
 
 String API_KEY = 'b6897ddeb169416e8c99dd75d12aadec';
@@ -63,9 +64,11 @@ class SourcesScreenState extends State<SourceScreen>{
                   {
                     List<Source> sources = snapshot.data;
                     return new ListView(
-                      children: sources.map((sources)=> GestureDetector(
+                      children: sources.map((source)=> GestureDetector(
                       onTap: (){
-                        // TODO: implement
+                        
+                        
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => ArticleScreen(source: source )));
                       },
                         child: Card(
                           elevation: 1.0,
@@ -90,18 +93,18 @@ class SourcesScreenState extends State<SourceScreen>{
                                         Expanded(
                                           child: Container(
                                             margin: const EdgeInsets.only(top: 20.0, bottom: 10.0),
-                                            child: Text('${sources.name}', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),),
+                                            child: Text('${source.name}', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),),
                                           ),
                                         )
                                       ],
                                     ),
 
                                     Container(
-                                      child: Text('${sources.description}', style: TextStyle(color: Color.fromARGB(255, 128, 128, 128), fontSize: 12.0, fontWeight: FontWeight.bold),),
+                                      child: Text('${source.description}', style: TextStyle(color: Color.fromARGB(255, 128, 128, 128), fontSize: 12.0, fontWeight: FontWeight.bold),),
                                     ),
 
                                     Container(
-                                      child: Text('Category: ${sources.category}', style: TextStyle(color: Colors.black, fontSize: 14.0, fontWeight: FontWeight.bold),),
+                                      child: Text('Category: ${source.category}', style: TextStyle(color: Colors.black, fontSize: 14.0, fontWeight: FontWeight.bold),),
                                     )
 
                                   ],

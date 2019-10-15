@@ -8,4 +8,4 @@
 
 
 #### Story App
-![image](IMAGES\story_app.gif)
+![ScreenShot](IMAGES\story_app.gif)

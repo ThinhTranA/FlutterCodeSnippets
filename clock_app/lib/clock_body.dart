@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:math';
 
+import 'clock_face.dart';
+
 class ClockBody extends StatelessWidget {
 
   ClockBody();
@@ -29,6 +31,8 @@ class ClockBody extends StatelessWidget {
               )
             ]
           ),
+
+          child: new ClockFace(),
         )
       ],
     )

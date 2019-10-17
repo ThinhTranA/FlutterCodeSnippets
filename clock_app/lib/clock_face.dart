@@ -1,11 +1,22 @@
+import 'package:clock_app/clock_hands.dart';
 import 'package:flutter/material.dart';
 import 'clock_dial_painter.dart';
+import 'clock_hands.dart';
 
-class ClockFace extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
+class ClockFace extends StatelessWidget{
+
+final DateTime dateTime;
+final ClockText clockText;
+final bool showHourHandleHeartShape;
+
+ClockFace({this.clockText = ClockText.arabic, this.showHourHandleHeartShape = false, this.dateTime});
+
+@override
+Widget build(BuildContext context) {
+  return new Padding(
+    padding: const EdgeInsets.all(10.0),
+    child: new AspectRatio(
+      aspectRatio: 1.0,
       child: new Container(
         width: double.infinity,
         decoration: new BoxDecoration(
@@ -15,11 +26,19 @@ class ClockFace extends StatelessWidget {
 
         child: new Stack(
           children: <Widget>[
-            //dia and numbers go here
+            //dial and numbers
+            new Container(
+              width: double.infinity,
+              height: double.infinity,
+              padding: const EdgeInsets.all(10.0),
+              child:new CustomPaint(
+                painter: new ClockDialPainter(clockText: clockText),
+              ),
+            ),
+
 
             //centerpoint
             new Center(
-
               child: new Container(
                 width: 15.0,
                 height: 15.0,
@@ -30,21 +49,14 @@ class ClockFace extends StatelessWidget {
               ),
             ),
 
-            //dial and numbers go here
-            new Container(
-              width: double.infinity,
-              height: double.infinity,
-              padding: const EdgeInsets.all(10.0),
-              child: new CustomPaint(
-                painter: new ClockDialPainter(clockText: ClockText.roman),
-              ),
-            )
 
-            //clock hands go here
+            new ClockHands(dateTime:dateTime, showHourHandleHeartShape: showHourHandleHeartShape),
 
           ],
         ),
       ),
-    );
-  }
+
+    ),
+  );
+}
 }
